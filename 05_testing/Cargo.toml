@@ -1,0 +1,10 @@
+[package]
+name = "rust-buch_testing"
+version = "0.1.0"
+authors = ["Marcel Koch <kontakt@marcelkoch.net>"]
+edition = "2018"
+
+[dependencies]
+mockall = "0.8.3"
+cfg-if = "1.0.0"
+pretty_assertions = "0.6.1"
