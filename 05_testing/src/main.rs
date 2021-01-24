@@ -5,7 +5,8 @@ extern crate cfg_if;
 
 mod hello;
 mod hello_mockall;
-mod without_mockall;
+mod kapitel_1_6_1_without_mockall;
+mod kapitel_1_6_2_1_traits;
 
 use hello_mockall::to_be_mocked_wrapper_module;
 use hello_mockall::lets_mock_module;
