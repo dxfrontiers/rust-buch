@@ -1,0 +1,1 @@
+/Users/marcel/Development/rust-buch/repos/dxfrontiers/09_language-bindings/rust/target/debug/librust_buch_language_bindings.dylib: /Users/marcel/Development/rust-buch/repos/dxfrontiers/09_language-bindings/rust/src/lib.rs /Users/marcel/Development/rust-buch/repos/dxfrontiers/09_language-bindings/rust/target/debug/build/j4rs-4845f1d42139f157/out/j4rs_init.rs
