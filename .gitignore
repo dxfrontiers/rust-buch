@@ -2,3 +2,5 @@
 07_microservices/target
 10_webassembly/assemblyscript/build
 10_webassembly/assemblyscript/node_modules
+09_language-bindings/rust/target
+09_language-bindings/java/target
