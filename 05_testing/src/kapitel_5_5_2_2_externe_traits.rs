@@ -24,7 +24,7 @@ mod tests {
         let mock2 = MockMyStruct::new();
         mock1.expect_clone()
             .return_once(move || mock2);
-        let cloned = mock1.clone();
+        let _cloned = mock1.clone();
     }
 }
 

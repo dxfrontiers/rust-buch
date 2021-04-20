@@ -1,11 +1,18 @@
-use mockall::automock;
+use mockall_double::double;
 
-#[automock()]
-pub mod module_to_be_mocked {
-    pub fn return_string() -> &'static str {
-        "Hello from productive code"
+mod outer {
+    use mockall::automock;
+    #[automock()]
+    #[allow(dead_code)]
+    pub mod a_module {
+        pub fn return_string() -> &'static str {
+            "Hello from productive code"
+        }
     }
 }
+
+#[double]
+pub use outer::a_module;
 
 #[cfg(test)]
 mod tests {
@@ -13,10 +20,10 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_return_string() {
-        let ctx = mock_module_to_be_mocked::return_string_context();
+    fn test_mocked_return_string() {
+        let ctx = a_module::return_string_context();
         ctx.expect()
             .return_const("Hello from mock!");
-        assert_eq!("Hello from mock!", module_to_be_mocked::return_string());
+        assert_eq!("Hello from mock!", a_module::return_string());
     }
 }
