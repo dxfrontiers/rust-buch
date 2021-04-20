@@ -6,6 +6,5 @@ edition = "2018"
 
 [dependencies]
 mockall = "0.9.1"
-cfg-if = "1.0.0"
 pretty_assertions = "0.6.1"
 mockall_double = "0.2.0"
