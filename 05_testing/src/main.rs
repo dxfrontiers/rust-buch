@@ -1,5 +1,3 @@
-extern crate mockall;
-
 mod kapitel_5_5_1_ohne_framework;
 mod kapitel_5_5_2_1_traits;
 mod kapitel_5_5_2_2_externe_traits;
