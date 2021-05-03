@@ -4,3 +4,6 @@
 10_webassembly/assemblyscript/node_modules
 09_language-bindings/rust/target
 09_language-bindings/java/target
+*/.idea
+*/*.iml
+*/Cargo.lock
