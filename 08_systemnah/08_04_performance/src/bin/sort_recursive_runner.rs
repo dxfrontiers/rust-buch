@@ -1,7 +1,11 @@
 use showcase::{generate_data, sort_recursive, check_sorted, generate_custom_data};
 
+/**
+    Sort 100 * 2^20 random elements and check if they have been sorted in the end
+    We print the time taken to sort the data 100 times.
+    In 99 Times we work on sorted data but thats ok.
+*/
 fn main(){
-    //let mut data = generate_data();
     let mut data = generate_custom_data(20);
 
 

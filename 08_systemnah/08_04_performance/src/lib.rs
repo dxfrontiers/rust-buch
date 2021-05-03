@@ -1,6 +1,27 @@
 use rand::Rng;
 
 
+/// Our first try at implementing a sort function
+/// Although the code is concise, we create new vectors for each half
+pub fn sort_recursive(input: &mut [u32]) {
+    let n = input.len();
+    let half = n/2;
+    let mut a = vec![0;half];
+    let mut b =  vec![0;n-half];
+    a.copy_from_slice(&input[..half]);
+    b.copy_from_slice(&input[half..]);
+
+    if half > 1 {
+        sort_recursive(&mut a);
+        sort_recursive(&mut b);
+    }
+
+    merge(&a,& b,input);
+}
+
+
+/// Our second try at implementing a sort function
+/// We Have observed that excessive allocation is bad for performance and hence avoid allocation here
 pub fn sort_iterative(x: &mut [u32]) {
     let n = x.len();
     let mut y = x.to_vec();
@@ -26,24 +47,7 @@ pub fn sort_iterative(x: &mut [u32]) {
     }
 }
 
-pub fn sort_recursive(input: &mut [u32]) {
-    let n = input.len();
-    let half = n/2;
-    let mut a = vec![0;half];
-    let mut b =  vec![0;n-half];
-    a.copy_from_slice(&input[..half]);
-    b.copy_from_slice(&input[half..]);
-
-    if half > 1 {
-        sort_recursive(&mut a);
-        sort_recursive(&mut b);
-    }
-
-    merge(&a,& b,input);
-}
-
-
-
+/// Helper function to merge two slices into a third one
 fn merge(a: &[u32], b: &[u32], out: &mut [u32]) {
 
     if out.len() != a.len() + b.len() {
@@ -77,21 +81,17 @@ fn merge(a: &[u32], b: &[u32], out: &mut [u32]) {
     }
 
     // perhaps there is something left
-
     if i < a.len() {
         out[k..].copy_from_slice(&a[i..]);
     }
 
     if j < b.len() {
         out[k..].copy_from_slice(&b[j..]);
-
     }
-
-
 }
 
 
-
+/// Helper functions to quickly generate an array filled with random data
 pub fn generate_data() -> Vec<u32> {
     generate_custom_data(20)
 }
@@ -106,6 +106,7 @@ pub fn generate_custom_data(exponent: u32) -> Vec<u32> {
     data
 }
 
+/// Helper function to check if slice was correctly sorted
 pub fn check_sorted(data: &[u32]) {
     let mut last = 0;
     for i in data {

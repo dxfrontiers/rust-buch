@@ -1,4 +1,4 @@
-# Example for `Kapitel 8: Systemnahe Programmierung`
+# Example for `Kapitel 8.3: Systemnahe Programmierung, Externe Bibliotheken`
 
 This rust crate contains several examples that showcase how code of other languages can be used in Rust.
 In this case we use the C language to demonstrate the interoperability and the use of unsafe.
