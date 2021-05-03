@@ -8,5 +8,3 @@ edition = "2018"
 
 [dependencies]
 libc = "0.2.71"
-lazy_static = "1.4.0"
-tokio = { version = "0.2", features = ["full"] }
