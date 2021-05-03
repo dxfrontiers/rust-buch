@@ -7,3 +7,6 @@
 */.idea
 */*.iml
 */Cargo.lock
+*/target
+08_systemnah/include/*.a
+08_systemnah/include/*.o

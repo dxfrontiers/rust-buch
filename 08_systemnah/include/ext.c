@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int add(size_t a, size_t b){
   return a + b;
