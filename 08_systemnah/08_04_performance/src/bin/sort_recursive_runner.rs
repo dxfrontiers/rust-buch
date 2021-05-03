@@ -1,4 +1,4 @@
-use showcase::{generate_data, sort_recursive, check_sorted, generate_custom_data};
+use rust_buch_08_04_performance::{sort_recursive, check_sorted, generate_custom_data};
 
 /**
     Sort 100 * 2^20 random elements and check if they have been sorted in the end

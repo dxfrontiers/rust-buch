@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion};
-use showcase::{sort_recursive, generate_custom_data, sort_iterative};
+use rust_buch_08_04_performance::{sort_recursive, generate_custom_data, sort_iterative};
 
 criterion_group!(benches, bench_sorting);
 criterion_main!(benches);
