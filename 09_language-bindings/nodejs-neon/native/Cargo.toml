@@ -1,0 +1,19 @@
+[package]
+name = "rustbuch_bindings_nodejs-neon"
+version = "0.1.0"
+authors = ["Marcel Koch <kontakt@marcelkoch.net>"]
+license = "MIT"
+build = "build.rs"
+edition = "2018"
+exclude = ["artifacts.json", "index.node"]
+
+[lib]
+name = "rustbuch_bindings_nodejsneon"
+crate-type = ["cdylib"]
+
+[build-dependencies]
+neon-build = "0.7.1"
+
+[dependencies]
+neon = "0.7.1"
+tokio = { version = "1", features = ["full"] }

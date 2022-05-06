@@ -1,0 +1,10 @@
+[default]
+kafka = { bootstrap_server = "kafka:9092", queue_buffering_max_ms = 0 }
+log_level = "debug"
+
+[debug]
+address = "0.0.0.0"
+
+[release]
+address = "0.0.0.0"
+kafka = { bootstrap_server = "kafka:9092" }

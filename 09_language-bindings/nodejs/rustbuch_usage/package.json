@@ -1,0 +1,13 @@
+{
+  "name": "rustbuch_usage",
+  "version": "0.1.0",
+  "description": "Showing how neon module can be used",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcel Koch <m@rcelko.ch>",
+  "license": "ISC",
+  "type": "module"
+}

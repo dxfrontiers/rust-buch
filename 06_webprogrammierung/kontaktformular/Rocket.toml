@@ -1,0 +1,11 @@
+[development]
+address = "127.0.0.1"
+
+
+[production]
+address = "127.0.0.1"
+log = "off"
+
+
+[global.databases]
+sqlite_db = { url = "db.sqlite" }

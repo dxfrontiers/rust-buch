@@ -1,0 +1,9 @@
+/target
+.idea
+include/*.a
+include/*.o
+Cargo.lock
+*.data
+*.old
+*.svg
+*.zst

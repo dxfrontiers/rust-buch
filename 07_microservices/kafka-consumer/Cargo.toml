@@ -1,0 +1,22 @@
+[package]
+name = "rustbuch_microservices_kafka-consumer"
+version = "0.1.0"
+authors = ["Marco Amann <marco@amann.dev>", "Marcel Koch <m@rcelko.ch>"]
+edition = "2018"
+
+[dependencies]
+rdkafka = "0.25.0"
+tokio = { version = "1", features = ["full"] }
+log = "0.4.14"
+env_logger = "0.8.2"
+clap = "2.33.3"
+serde = { version = "1.0", features = ["derive"] }
+envy = "0.4"
+futures = "0.3.0"
+structopt = "0.3"
+serde_json = "1.0"
+hex = "*"
+
+[dependencies.chrono]
+version = "0.4.9"
+features = ["serde"]

@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "b8418d32-7ebf-4f92-959c-4e1b05a5c5b7",
+		"name": "Rust-Buch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create contact request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"hello@example.org\",\n\t\"message\": \"Hello from newman!\"\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}"
+				}
+			},
+			"response": []
+		}
+	]
+}

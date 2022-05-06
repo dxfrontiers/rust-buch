@@ -1,0 +1,12 @@
+10_webassembly/assemblyscript/build
+10_webassembly/assemblyscript/node_modules
+
+*.idea
+*.iml
+*/Cargo.lock
+*/target
+**/target
+
+07_microservices/infra/data
+*.class
+10_webassembly/server/copy-file/copied.txt

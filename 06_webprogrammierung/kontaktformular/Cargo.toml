@@ -1,0 +1,45 @@
+[package]
+name = "kontaktformular"
+version = "0.1.0"
+authors = ["Marco Amann <marco@pfudi.de>"]
+edition = "2018"
+
+[dependencies]
+
+log = "0.4.0"
+env_logger = "0.6.2"
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+dotenv = "0.15.0"
+
+ring = "0.16.15"
+hex = "0.4.2"
+
+[dependencies.diesel]
+version = "1.4.6"
+features = ["sqlite","chrono"]
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde"]
+
+[dependencies.rocket]
+version ="0.5.0-rc.1"
+features = [
+    "json",
+    "secrets"
+]
+
+[dependencies.rocket_dyn_templates]
+version = "0.1.0-rc.1"
+features = ["handlebars", "tera"]
+
+[dependencies.rocket_sync_db_pools]
+version = "0.1.0-rc.1"
+default-features = false
+features = ["diesel_sqlite_pool"]
+
+[dev-dependencies]
+insta = "1.8.0"

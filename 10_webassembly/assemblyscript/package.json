@@ -1,0 +1,20 @@
+{
+  "name": "rust-buch_assemblyscript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests",
+    "asbuild:untouched": "asc assembly/index.ts --target debug",
+    "asbuild:optimized": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@assemblyscript/loader": "^0.18.5"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.18.5"
+  }
+}

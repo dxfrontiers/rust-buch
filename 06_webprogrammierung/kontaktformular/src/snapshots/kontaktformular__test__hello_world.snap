@@ -1,0 +1,7 @@
+---
+source: src/main.rs
+expression: response.into_string().unwrap()
+
+---
+"<!DOCTYPE html>\n<html>\n  <body>\n      <form  action=\"/public/\" method=\"post\">\n          <label for=\"email\">E-Mail:</label><br>\n          <input type=\"email\" id=\"email\" name=\"email\"><br>\n          <label for=\"message\">Nachricht:</label><br>\n          <input type=\"text\" id=\"message\" name=\"message\">\n          <input type=\"submit\" value=\"Submit\">\n      </form>\n  </body>\n</html>"
+

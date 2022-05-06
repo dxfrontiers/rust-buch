@@ -1,0 +1,17 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+scrape_configs:
+
+  - job_name: 'web'
+    static_configs:
+      - targets: ['web:8000']
+
+#  - job_name: 'database-sink'
+#    static_configs:
+#      - targets: ['database-sink:9090']
+#
+#  - job_name: 'mailer'
+#    static_configs:
+#      - targets: ['mailer:9090']

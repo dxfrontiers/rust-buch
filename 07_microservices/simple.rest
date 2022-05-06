@@ -1,0 +1,10 @@
+POST http://localhost:8000/
+Content-Type: application/json
+Accept: text/csv
+
+{
+  "message" : "Hallo aus der Jetbrains-Welt!",
+  "email" : "m@rcelko.ch"
+}
+
+###

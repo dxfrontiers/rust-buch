@@ -1,0 +1,26 @@
+<head>
+    <title>Hello WASM</title>
+</head>
+<body>
+<script type="application/javascript">
+    /*
+    (async () => {
+        const fetchPromise = fetch('/target/wasm32-unknown-unknown/release/hello-wasm-browser.wasm');
+        const { instance } = await WebAssembly.instantiateStreaming(fetchPromise);
+        const result = instance.exports.add(2, 2);
+        document.write(result);
+        console.log(result);
+    })();
+    */
+    // 1) Web-Assembly-Modul herunter laden
+    fetch('/target/wasm32-unknown-unknown/release/hello-wasm-browser.wasm').then(response =>
+        response.arrayBuffer()
+    ).then(bytes =>
+        WebAssembly.instantiate(bytes, {})
+    ).then((resultObject) => {
+        const result = resultObject.instance.exports.add(2, 2);
+        document.write(result);
+        console.log(result);
+    });
+</script>
+</body>

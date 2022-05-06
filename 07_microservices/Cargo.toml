@@ -1,0 +1,8 @@
+[workspace]
+
+members = [
+    "database-sink",
+    "kafka-consumer",
+    "mailer",
+    "web",
+]

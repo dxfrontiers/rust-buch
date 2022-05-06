@@ -1,0 +1,115 @@
+version: "3.9"
+services:
+  web:
+    build:
+      context: "."
+      dockerfile: web/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      ROCKET_ENV: release
+#      RUST_LOG: debug
+
+
+  database-sink:
+    build:
+      context: "."
+      dockerfile: database-sink/Dockerfile
+    environment:
+      DB_URL: postgres://postgres:supersecure@postgres/postgres
+      BROKERS: kafka:9092
+      RUST_LOG: trace
+    depends_on:
+      postgres:
+        condition: service_started
+      kafka:
+        condition: service_healthy
+
+  mailer:
+    build:
+      context: "."
+      dockerfile: mailer/Dockerfile
+    environment:
+      EMAIL_RECIPIENT: m@rcelko.ch
+      SMTP_USER: user
+      SMTP_PASSWORD: password
+      BROKERS: kafka:9092
+      RUST_LOG: debug
+    depends_on:
+      postgres:
+        condition: service_started
+      kafka:
+        condition: service_healthy
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_CREATE_TOPICS: "contact_request:8:1,test:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - zookeeper
+    healthcheck:
+      test:
+        ["CMD", "kafka-topics.sh", "--list", "--zookeeper", "zookeeper:2181"]
+      interval: 30s
+      timeout: 10s
+      retries: 4
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: supersecure
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  newman:
+    image: postman/newman
+    volumes:
+      - ./:/etc/newman
+    command: run Rust-Buch.postman_collection.json -e Rust-Buch_Docker.postman_environment.json
+    depends_on:
+      - web
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./infra/config/prometheus:/etc/prometheus/
+      - prometheus_data:/prometheus
+    ports:
+      - 9090:9090
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: always
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+volumes: 
+  pg_data:
+  prometheus_data:
+  grafana_data:

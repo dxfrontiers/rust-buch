@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div><a href="/auth/logout">Logout</a> </div>
+      You are logged in.
+
+<div>
+  List of messages:
+  <table class="people_list">
+    {{#each this}}
+      <tr>
+        <td><b>{{this.email}}</b></td>
+        <td>{{this.message}}</td>
+      </tr>
+    {{/each}}
+  </table>
+</div>
+   
+
+  </body>
+</html>

@@ -1,0 +1,38 @@
+
+Annahme des JSON-Objekts + ~~Form~~
+  [x] struct ContactRequest
+  [x] 200
+  ~~[x] Form data~~
+
+Beschränkung auf JSON ~~/ Form Data (Consumes)~~
+  ~~[x] contenttype~~
+  [x] 400 sonst
+
+Validierung der Absender-E-Mail-Adresse
+  [x] 400
+
+Custom return value
+  [x] status
+  [x] Json
+
+Speichern der Angaben in einer DB PostgreSQL
+  [x] Newtype pattern
+  [x] diesel
+  [ ] Return-Code 201
+  [ ] 500
+
+Backend Request + path parameters
+  [x] List
+  [x] CRUD
+
+Sessions
+  [ ] in-memory Session store
+  [ ] shared state
+
+Logging: 
+  [ ] Debug: Request-Daten mit obfuscated E-Mail-Adresse
+  [ ] Error: bei Fehlern
+
+Cross Compiling von Windows auf Linux
+Deployment auf Linux-Kiste
+~~Einfaches Formular, per serverside Template gerendert~~

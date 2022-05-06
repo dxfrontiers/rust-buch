@@ -1,0 +1,6 @@
+---
+source: src/testing_5_snapshots_mit_insta.rs
+expression: "\"Ich bin ein Snapshot, wenn auch \\\n    nur ein kleiner!\""
+
+---
+Ich bin ein Snapshot, wenn auch nur ein kleiner!

@@ -1,0 +1,66 @@
+[package]
+name = "rocket_basics"
+version = "0.1.0"
+authors = ["Marco Amann <marco@pfudi.de>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "01_requests"
+
+[[bin]]
+name = "02_responses"
+
+[[bin]]
+name = "03_state"
+
+[[bin]]
+name = "04_tests"
+
+[[bin]]
+name = "05_fairings"
+
+[[bin]]
+name = "06_logging"
+
+[[bin]]
+name = "07_params"
+
+[[bin]]
+name = "08_config"
+
+[dependencies]
+log = "0.4.0"
+env_logger = "0.6.2"
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+
+
+rocket = { version ="0.5.0-rc.1", features=["json"]}
+
+#[dependencies.rocket]
+#version = "0.5.0-dev"
+#git = "https://github.com/SergioBenitez/Rocket.git"
+#rev = "3c8f5708ea44e0e27045543cef7275f16b57e885"
+#
+#[dependencies.rocket_http]
+#version = "0.5.0-dev"
+#git = "https://github.com/SergioBenitez/Rocket.git"
+#rev = "3c8f5708ea44e0e27045543cef7275f16b57e885"
+#features = ["private-cookies"]
+
+structopt = "0.3"
+toml = "0.5"
+
+
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "bench_log"
+harness = false
+
