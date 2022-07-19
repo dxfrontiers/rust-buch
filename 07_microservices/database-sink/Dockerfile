@@ -1,4 +1,4 @@
-FROM rust:1.52.1 as builder
+FROM rust:1.62.1-buster as builder
 WORKDIR /usr/src
 
 RUN apt-get update && \

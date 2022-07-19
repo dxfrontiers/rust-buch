@@ -1,5 +1,5 @@
 # 1: Build the exe
-FROM rust:1.53-buster as builder
+FROM rust:1.62.1-buster as builder
 WORKDIR /usr/src
 
 RUN USER=root cargo new rustbuch
