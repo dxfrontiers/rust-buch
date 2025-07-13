@@ -1,4 +1,4 @@
-FROM rust:1.52.1 as builder
+FROM rust:1.82-bullseye as builder
 WORKDIR /usr/src
 
 RUN apt-get update && \
@@ -17,7 +17,7 @@ COPY database-sink/src ./src
 RUN rm -f target/release/deps/rustbuch*
 RUN cargo build --release
 
-FROM debian:buster-slim
+FROM debian:bullseye-slim as runtime
 RUN apt-get update && \
     apt-get install -y libpq-dev && \
     rm -rf /var/lib/apt/lists/*

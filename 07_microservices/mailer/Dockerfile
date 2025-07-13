@@ -1,5 +1,5 @@
 # 1: Build the exe
-FROM rust:1.52.1 as builder
+FROM rust:1.82-bullseye as builder
 WORKDIR /usr/src
 
 RUN USER=root cargo new rustbuch
@@ -14,7 +14,7 @@ COPY mailer/src ./src
 RUN rm -f target/release/deps/rustbuch*
 RUN cargo build --release
 
-FROM debian:buster-slim
+FROM debian:bullseye as runtime
 COPY --from=builder /usr/src/rustbuch/target/release/rustbuch_microservices_mailer ./mailer
 COPY *.toml ./
 USER 1000

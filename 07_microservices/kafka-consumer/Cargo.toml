@@ -5,7 +5,7 @@ authors = ["Marco Amann <marco@amann.dev>", "Marcel Koch <m@rcelko.ch>"]
 edition = "2018"
 
 [dependencies]
-rdkafka = "0.25.0"
+rdkafka = "0.38"
 tokio = { version = "1", features = ["full"] }
 log = "0.4.14"
 env_logger = "0.8.2"

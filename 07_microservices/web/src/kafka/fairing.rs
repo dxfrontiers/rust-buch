@@ -51,6 +51,6 @@ impl Fairing for KafkaFairing {
         let _client = rocket.state::<FutureProducer>()
             .expect("Kafka Client registered in on_ignite");
 
-        info!("{}{}:", Paint::emoji("📐 "), Paint::red("Kafka"));
+        info!("{}{}:", "📐 ", Paint::red("Kafka"));
     }
 }

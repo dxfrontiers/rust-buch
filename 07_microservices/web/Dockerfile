@@ -1,5 +1,5 @@
 # 1: Build the exe
-FROM rust:1.53-buster as builder
+FROM rust:1.82-bullseye as builder
 WORKDIR /usr/src
 
 RUN USER=root cargo new rustbuch
@@ -14,7 +14,7 @@ COPY web/src ./src
 RUN rm -f target/release/deps/rustbuch*
 RUN cargo build --release
 
-FROM debian:buster
+FROM debian:bullseye as runtime
 RUN apt update; \
     apt install -y --no-install-recommends \
     openssl

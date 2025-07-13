@@ -44,17 +44,18 @@ impl <'a> HeaderLookup<'a>{
     fn new(headers: Option<&'a BorrowedHeaders>) -> Self{
         HeaderLookup{ headers }
     }
-    pub fn get_headers(&'a self, name: &str)-> Vec<&[u8]>{
+    pub fn get_headers(&'a self, name: &str) -> Vec<&[u8]> {
         let mut result = Vec::new();
-        if let Some(headers) = self.headers{
-            for i in 0 .. headers.count(){
-                if let Some(header) = headers.get(i){
-                    if header.0.eq(name) {
-                        result.push(header.1)
+        if let Some(headers) = self.headers {
+            for i in 0..headers.count() {
+                let header = headers.get(i);
+                if header.key == name {
+                    if let Some(value) = header.value {
+                        result.push(value);
                     }
                 }
             }
-        };
+        }
         result
     }
 }

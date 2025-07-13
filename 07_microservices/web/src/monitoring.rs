@@ -9,7 +9,6 @@ use rocket::{Response, Request, Data, Route};
 use rocket::route::Handler;
 use rocket::route::Outcome;
 use rocket::http::{Method};
-use rocket::response::content::{Plain};
 use prometheus::{TextEncoder, Encoder};
 use lazy_static::lazy_static;
 use opentelemetry::metrics::Counter;
@@ -86,10 +85,10 @@ impl Handler for Prometheus {
         let metric_families = self.exporter.registry().gather();
         encoder.encode(&metric_families, &mut buffer).unwrap();
         let body = String::from_utf8(buffer).unwrap();
-        let responder = Plain(body);
+        // Instead of Plain(body), just return the String directly
         Outcome::from(
             request,
-            responder
+            body
         )
     }
 }

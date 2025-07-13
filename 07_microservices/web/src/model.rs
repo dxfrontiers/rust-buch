@@ -1,11 +1,11 @@
-use rocket::data::{FromData, Outcome};
+use rocket::data::FromData;
+use rocket::data::Outcome;
 use rocket::http::Status;
 use serde::{Deserialize, Serialize};
 use rocket::response::Responder;
 use rocket::{Data, Request, response};
 use rocket::serde::json::Json;
 use rocket::form::FromForm;
-use rocket::outcome::Outcome::*;
 
 /*
    // TODO explain all the derives (and clean up)
@@ -54,12 +54,10 @@ pub struct NewContactRequest {
 #[rocket::async_trait]
 impl<'r> FromData<'r> for NewContactRequest{
     type Error = String;
-    async fn from_data(req: &'r Request<'_>, data: Data<'r>) -> Outcome<'r, Self>{
-
+    async fn from_data(req: &'r Request<'_>, data: Data<'r>) -> rocket::data::Outcome<'r, Self> {
          match Json::from_data(req, data).await{
-            Success(json) => Success(json.0),
-            _a => Failure((Status::BadRequest,String::from("AAAAh"))),
+            rocket::outcome::Outcome::Success(json) => rocket::data::Outcome::Success(json.0),
+            _a => rocket::data::Outcome::Error((Status::BadRequest,String::from("AAAAh"))),
          }
-         
     }
 }

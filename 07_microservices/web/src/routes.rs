@@ -1,5 +1,5 @@
 use std::time::Duration;
-use rdkafka::message::OwnedHeaders;
+use rdkafka::message::{OwnedHeaders, Header};
 use rdkafka::producer::{FutureProducer, FutureRecord};
 use rocket::tokio::time::timeout;
 use rocket::{State, post, get};
@@ -56,7 +56,13 @@ async fn publish_to_kafka(
     let record = FutureRecord::to("contact_request")
         .payload(&payload)
         .key(&key[..])
-        .headers(OwnedHeaders::new().add("tracing_blob", &tracing_blob));
+        .headers(
+            OwnedHeaders::new_with_capacity(1)
+                .insert(Header {
+                    key: "tracing_blob",
+                    value: Some(tracing_blob.as_bytes()),
+                })
+        );
 
     debug!("{:?}",record);
 
@@ -69,15 +75,17 @@ async fn publish_to_kafka(
 
     // Notify the tracer about the send result
     match &send_result{
-        Ok(Ok(send_result)) =>
+        Ok(Ok(delivery)) =>
             Context::current().span().add_event("Publish done".to_string(),vec![
-                KeyValue::new("Partition",Value::from(send_result.0 as i64)),
-                KeyValue::new("Offset",Value::from(send_result.1))
+                KeyValue::new("Partition",Value::from(delivery.partition as i64)),
+                KeyValue::new("Offset",Value::from(delivery.offset))
             ]),
         _ => Context::current().span().add_event("Publish failed".to_string(),vec![])
     }
 
-    KafkaResponse::Processed(send_result)
+    // Map the delivery result to the expected KafkaResponse::Processed type
+    let mapped_result = send_result.map(|res| res.map(|delivery| (delivery.partition, delivery.offset)));
+    KafkaResponse::Processed(mapped_result)
 }
 
 #[get("/health")]
